@@ -71,6 +71,11 @@ SRC_URI:append:class-target = " \
     git://github.com/wolfSSL/wolfProvider.git;protocol=https;nobranch=1;rev=v1.1.0;destsuffix=git/wolfProvider \
 "
 
+# Disable internal keymgmt tests under wolfprovider FIPS mode which
+# fails on the FACTOR3 and EXPONENT3 and COEFFICIENT2 parameters which
+# are not supported by wolfProvider.
+SRC_URI:append:class-target = " file://openssl-disable-internal-keymgmt-tests.patch"
+
 python do_patch:append:class-target () {
     import os, subprocess
     s = d.getVar("S")

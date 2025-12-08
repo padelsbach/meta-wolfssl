@@ -10,6 +10,8 @@
 
 inherit wolfssl-helper
 
+FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
+
 python __anonymous() {
     wolfssl_conditional_require_mode(
         d,
